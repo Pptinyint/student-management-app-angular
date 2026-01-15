@@ -1,0 +1,87 @@
+<div class="container vh-100 d-flex align-items-center justify-content-center">
+    <div class="card shadow-lg border-0 rounded-4 w-100" style="max-width: 650px; width:80%">
+
+        <div class="card-body p-4 p-md-5">
+            <div class="mb-4">
+                <button type="button"
+                    class="btn btn-outline-secondary btn-sm rounded-pill px-3 shadow-sm border-0 bg-white">
+                    <i class="fa-solid fa-circle-left me-2"></i>Back
+                </button>
+            </div>
+
+            <h2 class="text-center fw-bold mb-4 text-dark">Create Account</h2>
+
+            <form class="p-0 container-fluid" [formGroup]="loginUsersForm">
+                <div class="row gx-md-4 gy-3">
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating shadow-sm">
+                            <input type="text" class="form-control border-0 bg-light rounded-3" id="fullName"
+                                placeholder="John Doe" required formControlName="fullName"
+                                [class.is-invalid]="this.loginUsersForm.get('fullName')?.invalid && this.loginUsersForm.get('fullName')?.touched">
+                            <label for="fullName" class="text-muted small fw-normal">Full Name</label>
+                        </div>
+                        @if(loginUsersForm.get('fullName')?.hasError('required') &&
+                        loginUsersForm.get('fullName')?.touched) {
+                        <div class="invalid-feedback d-block">
+                            Name is required.
+                        </div>
+                        }
+                        @if(loginUsersForm.get('fullName')?.hasError('pattern') &&
+                        loginUsersForm.get('fullName')?.touched) {
+                        <div class="invalid-feedback d-block">
+                            Please enter both First and Last name (e.g. John Doe).
+                        </div>
+                        }
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating shadow-sm">
+                            <input type="email" class="form-control border-0 bg-light rounded-3" id="email"
+                                placeholder="Email" required formControlName="email">
+                            <label for="email" class="text-muted small fw-normal">Email Address</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row gx-md-4 gy-3 mt-md-2 mt-1">
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating shadow-sm">
+                            <input type="password" class="form-control border-0 bg-light rounded-3" id="password"
+                                placeholder="••••••••" required formControlName="password">
+                            <label for="password" class="text-muted small fw-normal">Create Password</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating shadow-sm">
+                            <select class="form-select border-0 bg-light rounded-3" id="role" required
+                                formControlName="role">
+                                <option selected disabled value="">Choose...</option>
+                                <option value="admin">Admin</option>
+                                <option value="student">Student</option>
+                            </select>
+                            <label for="role" class="text-muted small fw-normal">Select Role</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12 d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg py-3 fw-bold shadow-sm border-0"
+                            style="background: linear-gradient(to right, #4e73df, #6610f2); border-radius: 12px;"
+                            (click)="onRegistrationClick()">
+                            Sign Up Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p class="text-muted small mb-0">Already have an account?
+                        <a routerLink="/slogin"
+                            class="text-primary fw-bold text-decoration-none ms-1 border-bottom border-primary border-2 pb-1">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
